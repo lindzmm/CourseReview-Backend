@@ -1,8 +1,8 @@
 from django.http import HttpResponse
 
-from .models import Question, Choice
+from .models import Question, Choice, Course, Review
 from rest_framework import viewsets
-from course.serializers import QuestionSerializer, ChoiceSerializer
+from course_reviews.serializers import QuestionSerializer, ChoiceSerializer, CourseSerializer, ReviewSerializer
 
 
 class QuestionViewSet(viewsets.ModelViewSet):
@@ -21,6 +21,22 @@ class ChoiceViewSet(viewsets.ModelViewSet):
     serializer_class = ChoiceSerializer
 
 
+class CourseViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows courses to be viewed or edited.
+    """
+    queryset = Course.objects.all()
+    serializer_class = CourseSerializer
+
+
+class ReviewsViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows reviews to be viewed or edited.
+    """
+    queryset = Review.objects.all()
+    serializer_class = ReviewSerializer
+
+
 def index(request):
     latest_question_list = Question.objects.order_by('-pub_date')[:5]
     output = ', '.join([q.question_text for q in latest_question_list])
@@ -28,7 +44,7 @@ def index(request):
 
 
 def index(request):
-    return HttpResponse("Hello, world. You're at the course index.")
+    return HttpResponse("Hello, world. You're at the course_reviews index.")
 
 
 def detail(request, question_id):
