@@ -1,8 +1,8 @@
 from django.http import HttpResponse
 
-from .models import Question, Choice, Course
+from .models import Question, Choice, Course, Review
 from rest_framework import viewsets
-from course_reviews.serializers import QuestionSerializer, ChoiceSerializer, CourseSerializer
+from course_reviews.serializers import QuestionSerializer, ChoiceSerializer, CourseSerializer, ReviewSerializer
 
 
 class QuestionViewSet(viewsets.ModelViewSet):
@@ -27,6 +27,14 @@ class CourseViewSet(viewsets.ModelViewSet):
     """
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
+
+
+class ReviewsViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows reviews to be viewed or edited.
+    """
+    queryset = Review.objects.all()
+    serializer_class = ReviewSerializer
 
 
 def index(request):
