@@ -1,4 +1,4 @@
-from course.models import Question, Choice
+from course_reviews.models import Question, Choice, Course
 from rest_framework import serializers
 
 
@@ -12,3 +12,9 @@ class ChoiceSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Choice
         fields = ('url', 'choice_text', 'votes')
+
+
+class CourseSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Course
+        fields = ('url', 'course_name', 'department')
