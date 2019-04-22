@@ -1,23 +1,13 @@
-from course_reviews.models import Question, Choice, Course, Review
+from course_reviews.models import Course, Review
 from rest_framework import serializers
 
 
-class QuestionSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Question
-        fields = ('url', 'question_text', 'pub_date')
-
-
-class ChoiceSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Choice
-        fields = ('url', 'choice_text', 'votes')
-
-
 class CourseSerializer(serializers.HyperlinkedModelSerializer):
+    course_reviews = serializers.HyperlinkedRelatedField(read_only=True, many=True, view_name='review-detail')
+
     class Meta:
         model = Course
-        fields = ('url', 'course_name', 'department')
+        fields = ('url', 'course_name', 'department', 'course_reviews')
 
 
 class ReviewSerializer(serializers.HyperlinkedModelSerializer):

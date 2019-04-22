@@ -21,8 +21,6 @@ from django.conf.urls import url
 
 
 router = routers.DefaultRouter()
-router.register(r'question', views.QuestionViewSet)
-router.register(r'choice', views.ChoiceViewSet)
 router.register(r'course', views.CourseViewSet)
 router.register(r'review', views.ReviewsViewSet)
 
