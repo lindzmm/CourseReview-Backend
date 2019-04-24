@@ -7,7 +7,7 @@ class CourseSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Course
-        fields = ('url', 'course_name', 'department', 'course_reviews')
+        fields = ('id', 'url', 'course_name', 'department', 'course_reviews')
 
 
 class ReviewSerializer(serializers.HyperlinkedModelSerializer):
