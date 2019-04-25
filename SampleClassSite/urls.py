@@ -23,6 +23,7 @@ from django.conf.urls import url
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'course', views.CourseViewSet)
 router.register(r'review', views.ReviewsViewSet)
+router.register(r'department', views.DepartmentsViewSet)
 
 urlpatterns = [
     path('course_reviews/', include('course_reviews.urls')),

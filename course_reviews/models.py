@@ -7,9 +7,16 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 # Create your models here.
 
 
+class Department(models.Model):
+    department_name = models.CharField(max_length=500)
+
+    def __str__(self):
+        return self.department_name
+
+
 class Course(models.Model):
+    department = models.ForeignKey(Department, related_name="department_courses", on_delete=models.CASCADE)
     course_name = models.CharField(max_length=500)
-    department = models.CharField(max_length=500)
     course_number = models.IntegerField(default=0)
 
     def __str__(self):

@@ -1,8 +1,8 @@
 from django.http import HttpResponse
 
-from .models import Course, Review
+from .models import Course, Review, Department
 from rest_framework import viewsets
-from course_reviews.serializers import CourseSerializer, ReviewSerializer
+from course_reviews.serializers import CourseSerializer, ReviewSerializer, DepartmentSerializer
 from django.shortcuts import render
 from django.views.generic.base import TemplateView
 
@@ -22,6 +22,15 @@ class ReviewsViewSet(viewsets.ModelViewSet):
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
     name = 'review-detail'
+
+
+class DepartmentsViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows reviews to be viewed or edited.
+    """
+    queryset = Department.objects.all()
+    serializer_class = DepartmentSerializer
+    name = 'course-detail'
 
 
 def index(request):
