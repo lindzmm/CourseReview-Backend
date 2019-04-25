@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from .models import Course, Review
 from rest_framework import viewsets
 from course_reviews.serializers import CourseSerializer, ReviewSerializer
+from django.shortcuts import render
+from django.views.generic.base import TemplateView
 
 
 class CourseViewSet(viewsets.ModelViewSet):
@@ -23,5 +25,10 @@ class ReviewsViewSet(viewsets.ModelViewSet):
 
 
 def index(request):
-    return HttpResponse("Hello, world. You're at the course_reviews index.")
+    def get(self, request, **kwargs):
+        return render(request, 'index.html', context=None)
 
+
+class HomePageView(TemplateView):
+    def get(self, request, **kwargs):
+        return render(request, 'index.html', context=None)

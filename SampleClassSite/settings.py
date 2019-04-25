@@ -115,7 +115,9 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 10,
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny'
-    ]
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 100
 }
 
 
@@ -139,3 +141,13 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 CORS_ORIGIN_ALLOW_ALL = True
+
+PROJECT_ROOT = os.path.dirname(os.path.dirname((__file__)))
+# STATIC_ROOT = BASE_DIR+'/academy/staticfiles'
+STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join((BASE_DIR),"static")
+# MEDIA_ROOT =  os.path.join(os.path.dirname(BASE_DIR),"media")
+
+SS_ROOT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# Extra places for collectstatic to find static files.
