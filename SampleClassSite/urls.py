@@ -23,13 +23,12 @@ from django.conf.urls import url
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'course', views.CourseViewSet)
 router.register(r'review', views.ReviewsViewSet)
-router.register(r'department', views.DepartmentsViewSet)
+
 
 urlpatterns = [
     path('course_reviews/', include('course_reviews.urls')),
     path('admin/', admin.site.urls),
-    url(r'^', include(router.urls)),
+    url(r'^api/', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls')),
-    url(r'^(?!ng/).*$', views.HomePageView.as_view(), name="angular_app"),
-    url(r'^(?P<path>.*)/$', views.index),
+
 ]

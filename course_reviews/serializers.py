@@ -1,13 +1,5 @@
-from course_reviews.models import Course, Review, Department
+from course_reviews.models import Course, Review
 from rest_framework import serializers
-
-
-class DepartmentSerializer(serializers.HyperlinkedModelSerializer):
-    department_courses = serializers.HyperlinkedRelatedField(read_only=True, many=True, view_name='course-detail')
-
-    class Meta:
-        model = Department
-        fields = ('department_name', 'id', 'department_courses')
 
 
 class CourseSerializer(serializers.HyperlinkedModelSerializer):
@@ -15,7 +7,7 @@ class CourseSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Course
-        fields = ('id', 'url', 'course_name', 'course_number', 'department', 'course_reviews')
+        fields = ('uuid', 'url', 'course_name', 'course_number', 'course_reviews')
 
 
 class ReviewSerializer(serializers.HyperlinkedModelSerializer):

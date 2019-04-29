@@ -1,10 +1,15 @@
 from django.http import HttpResponse
 
-from .models import Course, Review, Department
+from .models import Course, Review
 from rest_framework import viewsets
-from course_reviews.serializers import CourseSerializer, ReviewSerializer, DepartmentSerializer
+from course_reviews.serializers import CourseSerializer, ReviewSerializer
 from django.shortcuts import render
 from django.views.generic.base import TemplateView
+from .filters import CourseFilter
+from rest_framework import generics
+import django_filters.rest_framework
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import filters
 
 
 class CourseViewSet(viewsets.ModelViewSet):
@@ -13,6 +18,7 @@ class CourseViewSet(viewsets.ModelViewSet):
     """
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
+    filter_class = CourseFilter
 
 
 class ReviewsViewSet(viewsets.ModelViewSet):
@@ -24,15 +30,6 @@ class ReviewsViewSet(viewsets.ModelViewSet):
     name = 'review-detail'
 
 
-class DepartmentsViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows reviews to be viewed or edited.
-    """
-    queryset = Department.objects.all()
-    serializer_class = DepartmentSerializer
-    name = 'course-detail'
-
-
 def index(request):
     def get(self, request, **kwargs):
         return render(request, 'index.html', context=None)
@@ -41,3 +38,17 @@ def index(request):
 class HomePageView(TemplateView):
     def get(self, request, **kwargs):
         return render(request, 'index.html', context=None)
+
+
+
+
+    # def get_queryset(self):
+    #     """
+    #     Optionally restricts the returned purchases to a given user,
+    #     by filtering against a `username` query parameter in the URL.
+    #     """
+    #     queryset = Course.objects.all()
+    #     number = self.request.query_params.get('course_number')
+    #     if number:
+    #         queryset = queryset.filter(course_number=number)
+    #     return queryset
