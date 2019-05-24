@@ -7,7 +7,9 @@ class CourseSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Course
-        fields = ('uuid', 'url', 'course_name', 'course_number', 'course_reviews')
+        fields = ('uuid', 'url', 'course_name', 'course_number', 'department', 'course_reviews', 'credits',
+                  'description', 'prereq',
+                  'ethnicStudies', 'genEd', 'breadth', 'level', 'lasCredit', 'typicallyOffered')
 
 
 class ReviewSerializer(serializers.HyperlinkedModelSerializer):
