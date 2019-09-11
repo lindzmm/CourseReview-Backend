@@ -4,6 +4,7 @@ from django.db import models
 from django.utils import timezone
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.contrib.postgres.fields import ArrayField
+from datetime import datetime
 # Create your models here.
 
 
@@ -29,7 +30,11 @@ class Course(models.Model):
 class Review(models.Model):
     course = models.ForeignKey(Course, related_name='course_reviews', on_delete=models.CASCADE, to_field='uuid')
     review_text = models.CharField(max_length=5000)
-    rating = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
+    difficulty_rating = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
+    interest_rating = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
+    success_tips_text = models.CharField(max_length=5000)
+    date_posted = models.DateTimeField(datetime.now())
+    professor = models.CharField(max_length=100)
 
     def __str__(self):
         return self.review_text

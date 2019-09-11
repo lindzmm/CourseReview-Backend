@@ -15,4 +15,5 @@ class CourseSerializer(serializers.HyperlinkedModelSerializer):
 class ReviewSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Review
-        fields = ('url', 'course', 'review_text', 'rating')
+        fields = ('url', 'course', 'review_text', 'difficulty_rating', 'interest_rating', 'success_tips_text',
+                  'date_posted', 'professor')
