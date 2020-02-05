@@ -25,7 +25,7 @@ SECRET_KEY = 'p!+w2x&jwsp_mp3cd8+1e1%i=$4p*%6j%68bu#69omi+r6n!9z'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['http://django-env.uiw9ywbuwh.us-west-2.elasticbeanstalk.com/', '127.0.0.1']
 
 
 # Application definition
