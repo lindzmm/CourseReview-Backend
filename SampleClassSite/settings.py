@@ -33,13 +33,14 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
-    'course.apps.ClassConfig',
+    'course_reviews.apps.ClassConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -114,8 +115,11 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10,
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ]
+        'rest_framework.permissions.AllowAny'
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 100,
+    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',)
 }
 
 
@@ -139,3 +143,13 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 CORS_ORIGIN_ALLOW_ALL = True
+
+PROJECT_ROOT = os.path.dirname(os.path.dirname((__file__)))
+# STATIC_ROOT = BASE_DIR+'/academy/staticfiles'
+STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join((BASE_DIR),"static")
+# MEDIA_ROOT =  os.path.join(os.path.dirname(BASE_DIR),"media")
+
+SS_ROOT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# Extra places for collectstatic to find static files.
