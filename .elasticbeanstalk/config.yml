@@ -2,10 +2,12 @@ branch-defaults:
   Lindsey:
     environment: django-env
     group_suffix: null
+  master:
+    environment: django-env
 environment-defaults:
   django-env:
-    branch: Lindsey
-    repository: CourseReview-Backend
+    branch: null
+    repository: null
 global:
   application_name: CourseReviews-Backend
   branch: null
